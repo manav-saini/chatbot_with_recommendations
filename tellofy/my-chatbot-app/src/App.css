@@ -1,0 +1,53 @@
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+}
+
+.chat-container {
+  width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.chat-history {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.chat-user {
+  text-align: right;
+  background-color: #d1f7c4;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.chat-assistant {
+  text-align: left;
+  background-color: #f1f1f1;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.chat-input input {
+  width: 300px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.recommended-prompts {
+  margin-top: 20px;
+}
+
+.recommended-prompts button {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #e7e7e7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
