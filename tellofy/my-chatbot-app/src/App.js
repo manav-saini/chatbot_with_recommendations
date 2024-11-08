@@ -23,7 +23,7 @@
 
 //         try {
 //             // Send the required information to the backend
-//             const response = await axios.post('http://localhost:4345/chat', {
+//             const response = await axios.post('http://34.136.210.72:4345/chat', {
 //                 apiKey,
 //                 websiteContent,
 //                 userMessage,
@@ -94,7 +94,6 @@
 // }
 
 // export default App;
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
@@ -119,8 +118,8 @@ function App() {
         setChatHistory(newChatHistory);
 
         try {
-            // Send the required information to the backend
-            const response = await axios.post('http://34.136.210.72:4345/chat', {
+            // Use relative URL so Vercel routes to the backend correctly
+            const response = await axios.post('/api/chat', {
                 apiKey,
                 websiteContent,
                 userMessage,
