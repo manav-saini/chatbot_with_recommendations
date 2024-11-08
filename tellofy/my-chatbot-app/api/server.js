@@ -1,11 +1,14 @@
+// // api/chat.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { Configuration, OpenAI } = require('openai');
+
 const corsOptions = {
     origin: 'https://my-chatbot-7lo4filr1-manavs-projects-b6da2a2a.vercel.app',
     optionsSuccessStatus: 200,
 };
-const { Configuration, OpenAI } = require('openai');
 
 // Initialize app and middleware
 const app = express();
@@ -61,7 +64,6 @@ Assistant (respond only based on provided website content):`;
 });
 
 const generateRecommendedPrompts = async (openai, websiteContent, chatHistory) => {
-    // Define the prompt to ask GPT to generate recommended prompts based only on the website content
     const prompt = `Based on the following website content and chat history, suggest specific, relevant prompts the user might ask next. ONLY generate suggestions related to the content provided. Do not suggest anything outside of this context.
 
 Website content: ${websiteContent}
@@ -72,13 +74,11 @@ Recommended Prompts (only generate prompts that match the provided information):
         const response = await openai.chat.completions.create({
             model: "gpt-4",
             messages: [{ "role": "user", "content": prompt }],
-            max_tokens: 150, // Limit tokens to keep recommendations concise
+            max_tokens: 150,
         });
 
         const generatedText = response.choices[0].message.content.trim();
-
-        // Split the generated text into individual prompt suggestions
-        const recommendedPrompts = generatedText.split("\n").filter(p => p).slice(0, 4); // Limit to top 4 prompts
+        const recommendedPrompts = generatedText.split("\n").filter(p => p).slice(0, 4);
 
         return recommendedPrompts;
     } catch (error) {
@@ -87,7 +87,5 @@ Recommended Prompts (only generate prompts that match the provided information):
     }
 };
 
-// Start the server
-app.listen(4345,() => {
-    console.log('Server is running on port 4345');
-});
+// Export the app for Vercel's serverless function
+module.exports = app;
